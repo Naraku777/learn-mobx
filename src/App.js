@@ -30,10 +30,25 @@ class App extends Component {
   }
 }
 
-const Timer = observer(({ timerData }) => (
-  <span>Seconds passed: {timerData.secondsPassed}</span>
-))
+// const Timer = observer(({ timerData }) => (
+//   <span>Seconds passed: {timerData.secondsPassed}</span>
+// ))
 
+@observer
+class Timer extends Component {
+  @observable
+  secondsPassed = 0
+
+  componentWillMount () {
+    setInterval(() => {
+      this.secondsPassed++
+    }, 1000)
+  }
+
+  render () {
+    return (<span>Seconds passed: {this.secondsPassed}</span>)
+  }
+}
 
 
 export default App
